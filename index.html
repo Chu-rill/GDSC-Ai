@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Damion&family=Inconsolata:wght@200..900&family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complexa</title>
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <div
+      class="container max-w-screen-sm flex flex-col items-center justify-center mx-auto"
+    >
+      <header class="mb-10">
+        <h1
+          class="font-damion lg:text-8xl text-6xl mt-20 text-center tracking-tighter"
+        >
+          Complexa <span class="block"> Math Solver </span>
+        </h1>
+        <p class="font-inter text-sm w-3/5 mx-auto text-center tracking-tight">
+          Solve basic maths with complexa. Take a photo of a math problem, upload
+          to complexa and click solve.
+        </p>
+      </header>
+      <div class="mb-4">
+        <div
+          id="image-preview"
+          class="w-[400px] h-[400px] bg-[#f6f6f7] flex flex-col items-center justify-center cursor-pointer"
+        >
+          <img id="blah" class="w-3/5" src="upload.svg" alt="your image" />
+          <input id="file-select" class="opacity-0" type="file" />
+        </div>
+      </div>
+      <div class="mb-8">
+        <button id="solveBtn" class="text-white">Solve</button>
+      </div>
+      <div class="text-center text-electric-blue-default">
+        <p class="font-inter text-lg">Solution</p>
+        <p
+          id="solution-text"
+          class="font-inter text-sm w-4/5 mx-auto text-center tracking-tight"
+        >
+          Select an image and click the solve button
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
