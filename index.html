@@ -9,48 +9,49 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Complexa</title>
-    <script type="module" src="/main.js"></script>
-    <script
-      src="https://kit.fontawesome.com/4b12a02105.js"
-      crossorigin="anonymous"
-    ></script>
+
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-gray-800 h-screen">
     <div
       class="container max-w-screen-sm h-full flex flex-col justify-between mx-auto"
     >
-      <h1 class="underline text-5xl font-damion text-center text-blue-500">
-        Navi
-      </h1>
-      <div id="messages-container">
-        <!-- Example user message -->
-        <div class="message user-message">
-          <img
-            class="profile-pic"
-            src="user_profile_pic.jpg"
-            alt="User Profile Picture"
-          />
-          <div class="message-content">
-            <p class="message-text">This is a user message</p>
-            <div class="message-info">
-              <span class="sender-name">You</span>
-              <span class="timestamp">12:34 PM</span>
+      <div>
+        <h1
+          class="mb-12 underline text-5xl font-damion text-center text-blue-500"
+        >
+          Navi
+        </h1>
+        <div id="messages-container">
+          <!-- Example user message -->
+          <div class="message user-message">
+            <img
+              class="profile-pic"
+              src="user_profile_pic.jpg"
+              alt="User Profile Picture"
+            />
+            <div class="message-content">
+              <p class="message-text">This is a user message</p>
+              <div class="message-info">
+                <span class="sender-name">You</span>
+                <span class="timestamp">12:34 PM</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Example bot message -->
-        <div class="message bot-message">
-          <img
-            class="profile-pic"
-            src="bot_profile_pic.jpg"
-            alt="Bot Profile Picture"
-          />
-          <div class="message-content">
-            <p class="message-text">This is a bot message</p>
-            <div class="message-info">
-              <span class="sender-name">Navi</span>
-              <span class="timestamp">12:35 PM</span>
+          <!-- Example bot message -->
+          <div class="message bot-message">
+            <img
+              class="profile-pic"
+              src="bot_profile_pic.jpg"
+              alt="Bot Profile Picture"
+            />
+            <div class="message-content">
+              <p class="message-text">This is a bot message</p>
+              <div class="message-info">
+                <span class="sender-name">Navi</span>
+                <span class="timestamp">12:35 PM</span>
+              </div>
             </div>
           </div>
         </div>
@@ -66,5 +67,10 @@
         </button>
       </div>
     </div>
+    <script type="module" src="/main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/4b12a02105.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

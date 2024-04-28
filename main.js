@@ -1,4 +1,4 @@
-import "./style.css";
+// import "./style.css";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GOOGLE_GEMINI_API_KEY } from "./secrets.js";
 // Access your API key as an environment variable (see "Set up your API key" above)
