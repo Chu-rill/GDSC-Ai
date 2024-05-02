@@ -54,9 +54,7 @@ function displayMessage(sender, message, timestamp) {
 
   const senderImage = document.createElement("img");
   senderImage.src =
-    sender === "You"
-      ? "/public/debian_grey_swirl.png"
-      : "/public/gruvbox_minimal_space.png";
+    sender === "You" ? "debian_grey_swirl.png" : "gruvbox_minimal_space.png";
   senderImage.alt =
     sender === "You" ? "User Profile Picture" : "Bot Profile Picture";
   senderImage.style.width = "40px";
