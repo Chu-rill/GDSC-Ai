@@ -40,6 +40,7 @@ async function run() {
   const { totalTokens } = await model.countTokens({ contents });
 
   displayMessage("Conversa", text, stamp);
+  console.log(text);
 }
 
 function displayMessage(sender, message, timestamp) {
@@ -53,7 +54,9 @@ function displayMessage(sender, message, timestamp) {
 
   const senderImage = document.createElement("img");
   senderImage.src =
-    sender === "You" ? "debian_grey_swirl.png" : "gruvbox_minimal_space.png";
+    sender === "You"
+      ? "/public/debian_grey_swirl.png"
+      : "/public/gruvbox_minimal_space.png";
   senderImage.alt =
     sender === "You" ? "User Profile Picture" : "Bot Profile Picture";
   senderImage.style.width = "40px";
@@ -65,9 +68,26 @@ function displayMessage(sender, message, timestamp) {
   messageContent.style.marginLeft = "8px";
   messageContent.classList.add("message-content");
 
-  const messageText = document.createElement("p");
+  const messageText = document.createElement("div");
   messageText.classList.add("message-text");
-  messageText.textContent = message;
+
+  // Check if the message is a list
+  if (Array.isArray(message)) {
+    const orderedList = document.createElement("ol");
+
+    // Loop through each item in the list and create list items
+    message.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      orderedList.appendChild(listItem);
+    });
+
+    // Append the ordered list to the message content
+    messageText.appendChild(orderedList);
+  } else {
+    // If not a list, display as plain text
+    messageText.textContent = message;
+  }
 
   const messageInfo = document.createElement("div");
   messageInfo.classList.add("message-info");
