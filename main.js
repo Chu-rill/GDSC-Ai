@@ -56,10 +56,14 @@ function displayMessage(sender, message, timestamp) {
     sender === "You" ? "debian_grey_swirl.png" : "gruvbox_minimal_space.png";
   senderImage.alt =
     sender === "You" ? "User Profile Picture" : "Bot Profile Picture";
-  senderImage.classList.add("w-10", "h-10", "rounded-3xl");
+  senderImage.style.width = "40px";
+  senderImage.style.height = "40px";
+
+  senderImage.classList.add("rounded-3xl");
 
   const messageContent = document.createElement("div");
-  messageContent.classList.add("message-content", "ml-2");
+  messageContent.style.marginLeft = "8px";
+  messageContent.classList.add("message-content");
 
   const messageText = document.createElement("p");
   messageText.classList.add("message-text");
@@ -83,7 +87,8 @@ function displayMessage(sender, message, timestamp) {
   }${currentMinutes}`;
 
   const timestampSpan = document.createElement("span");
-  timestampSpan.classList.add("timestamp", "ml-2");
+  timestampSpan.style.marginLeft = "8px";
+  timestampSpan.classList.add("timestamp");
   timestampSpan.textContent = formattedTime;
 
   messageInfo.appendChild(senderName);
@@ -101,4 +106,11 @@ function displayMessage(sender, message, timestamp) {
 // Call run() when you want to start the conversation
 send.addEventListener("click", () => {
   run();
+});
+userInput.addEventListener("keypress", (event) => {
+  // Check if the key pressed is Enter (key code 13)
+  if (event.key === "Enter") {
+    // Call the run function
+    run();
+  }
 });
