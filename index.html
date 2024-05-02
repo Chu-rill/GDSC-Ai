@@ -2,68 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="download.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Damion&family=Inconsolata:wght@200..900&family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complexa</title>
+    <title>Conversa</title>
 
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-gray-800 h-screen">
+  <body class="bg-gray-800 h-screen overflow-hidden">
     <div
-      class="container max-w-screen-sm h-full flex flex-col justify-between mx-auto"
+      class="rounded-3xl container p-[28px] bg-gray-400 max-w-screen-sm h-[95%] mt-4 mb-4 flex flex-col justify-between mx-auto"
     >
       <div>
-        <h1
-          class="mb-12 underline text-5xl font-damion text-center text-blue-500"
-        >
-          Navi
-        </h1>
-        <div id="messages-container">
-          <!-- Example user message -->
-          <div class="message user-message">
-            <img
-              class="w-14 h-14 rounded-3xl"
-              src="debian_grey_swirl.png"
-              alt="User Profile Picture"
-            />
-            <div class="message-content">
-              <p class="message-text">This is a user message</p>
-              <div class="message-info">
-                <span class="sender-name">You</span>
-                <span class="timestamp">12:34 PM</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Example bot message -->
-          <div class="message bot-message">
-            <img
-              class="w-14 h-14 rounded-3xl"
-              src="gruvbox_minimal_space.png"
-              alt="Bot Profile Picture"
-            />
-            <div class="message-content">
-              <p class="message-text">This is a bot message</p>
-              <div class="message-info">
-                <span class="sender-name">Navi</span>
-                <span class="timestamp">12:35 PM</span>
-              </div>
-            </div>
-          </div>
+        <div class="flex justify-around">
+          <a href="index.html">Chatbot</a>
+          <a href="image.html">Image</a>
         </div>
+        <h1
+          class="mb-10 underline text-5xl font-damion text-center text-blue-500"
+        >
+          Conversa
+        </h1>
+        <div id="messages-container" class="overflow-y-scroll"></div>
       </div>
       <div class="w-[90%] mb-2 mx-auto flex justify-around">
         <input
-          class="text w-[90%] p-2 focus:outline-purple-900 resize-none h-auto min-h-12 max-h-32 border rounded-lg focus:border-2"
+          id="text"
+          class="w-[90%] p-2 focus:outline-purple-900 resize-none h-auto min-h-12 max-h-32 border rounded-lg focus:border-2"
           type="text"
           placeholder="Type your message..."
         />
         <button>
-          <i class="fa-solid fa-arrow-right"></i>
+          <i class="send fa-solid fa-arrow-right"></i>
         </button>
       </div>
     </div>

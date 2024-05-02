@@ -1,17 +1,13 @@
-// import "./style.css";
+let userInput = document.getElementById("text");
+const messagesContainer = document.getElementById("messages-container");
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GOOGLE_GEMINI_API_KEY } from "./secrets.js";
-// Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI(GOOGLE_GEMINI_API_KEY);
-
-const text = document.querySelector("text");
-
-// ...
+let stamp = new Date();
+const send = document.querySelector(".send");
 
 async function run() {
-  // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
   const chat = model.startChat({
     history: [
       {
@@ -23,31 +19,85 @@ async function run() {
         parts: [{ text: "Great to meet you. What would you like to know?" }],
       },
     ],
-    generationConfig: {
-      maxOutputTokens: 100,
-    },
+    generationConfig: { maxOutputTokens: 100 },
   });
 
-  const msg = "who discovered gravity";
+  const msg = userInput.value;
+  userInput.value = "";
+  console.log(userInput);
+  console.log(msg);
 
-  // Use streaming with multi-turn conversations (like chat)
   const result = await chat.sendMessageStream(msg);
+
   const response = await result.response;
   const text = response.text();
 
-  // For multi-turn conversations (like chat)
   const history = await chat.getHistory();
   const msgContent = { role: "user", parts: [{ text: msg }] };
   const contents = [...history, msgContent];
   const { totalTokens } = await model.countTokens({ contents });
 
-  console.log(text);
-  console.log(totalTokens);
+  displayMessage("You", msg, stamp);
+  displayMessage("Conversa", text, stamp);
 }
 
-run();
+function displayMessage(sender, message, timestamp) {
+  const newMessage = document.createElement("div");
+  newMessage.classList.add(
+    "message",
+    sender === "You" ? "user-message" : "bot-message",
+    "flex",
+    "mb-4"
+  );
 
-text.addEventListener("input", function () {
-  text.style.height = "auto";
-  text.style.height = text.scrollHeight + "px";
+  const senderImage = document.createElement("img");
+  senderImage.src =
+    sender === "You" ? "debian_grey_swirl.png" : "gruvbox_minimal_space.png";
+  senderImage.alt =
+    sender === "You" ? "User Profile Picture" : "Bot Profile Picture";
+  senderImage.classList.add("w-10", "h-10", "rounded-3xl");
+
+  const messageContent = document.createElement("div");
+  messageContent.classList.add("message-content", "ml-2");
+
+  const messageText = document.createElement("p");
+  messageText.classList.add("message-text");
+  messageText.textContent = message;
+
+  const messageInfo = document.createElement("div");
+  messageInfo.classList.add("message-info");
+
+  const senderName = document.createElement("span");
+  senderName.classList.add("sender-name");
+  senderName.textContent = sender;
+
+  const currentHour = timestamp.getHours();
+
+  // Get the current minutes
+  const currentMinutes = timestamp.getMinutes();
+
+  // Format the current time (optional)
+  const formattedTime = `${currentHour}:${
+    currentMinutes < 10 ? "0" : ""
+  }${currentMinutes}`;
+
+  const timestampSpan = document.createElement("span");
+  timestampSpan.classList.add("timestamp", "ml-2");
+  timestampSpan.textContent = formattedTime;
+
+  messageInfo.appendChild(senderName);
+  messageInfo.appendChild(timestampSpan);
+
+  messageContent.appendChild(messageInfo);
+  messageContent.appendChild(messageText);
+
+  newMessage.appendChild(senderImage);
+  newMessage.appendChild(messageContent);
+
+  messagesContainer.appendChild(newMessage);
+}
+
+// Call run() when you want to start the conversation
+send.addEventListener("click", () => {
+  run();
 });
