@@ -27,6 +27,8 @@ async function run() {
   console.log(userInput);
   console.log(msg);
 
+  displayMessage("You", msg, stamp);
+
   const result = await chat.sendMessageStream(msg);
 
   const response = await result.response;
@@ -37,7 +39,6 @@ async function run() {
   const contents = [...history, msgContent];
   const { totalTokens } = await model.countTokens({ contents });
 
-  displayMessage("You", msg, stamp);
   displayMessage("Conversa", text, stamp);
 }
 
