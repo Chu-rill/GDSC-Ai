@@ -3,9 +3,22 @@ const messagesContainer = document.getElementById("messages-container");
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GOOGLE_GEMINI_API_KEY } from "./secrets.js";
 const genAI = new GoogleGenerativeAI(GOOGLE_GEMINI_API_KEY);
+const storedMessages =
+  JSON.parse(sessionStorage.getItem("storedMessages")) || [];
 let stamp = new Date();
 const send = document.querySelector(".send");
 
+messagesContainer.innerHTML = "";
+// Populate messages container with stored messages
+storedMessages.forEach((message) => {
+  displayMessage(message.sender, message.text, new Date(message.timestamp));
+  displayMessage("Conversa", message.text, new Date(message.timestamp));
+  // if (message.sender === "You") {
+  //   displayMessage("You", message.text, new Date(message.timestamp));
+  // } else {
+  //   displayMessage("Conversa", message.text, new Date(message.timestamp));
+  // }
+});
 async function run() {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const chat = model.startChat({
@@ -41,6 +54,26 @@ async function run() {
 
   displayMessage("Conversa", text, stamp);
   console.log(text);
+
+  // // Store the message in sessionStorage
+  // const newMessage = { sender: "You", text: msg, timestamp: stamp.getTime() };
+  // storedMessages.push(newMessage);
+  // sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
+
+  // Store the user message in sessionStorage
+  const userMessage = { sender: "You", text: msg, timestamp: stamp.getTime() };
+  storedMessages.push(userMessage);
+
+  // Store the bot message in sessionStorage
+  const botMessage = {
+    sender: "Conversa",
+    text: text,
+    timestamp: stamp.getTime(),
+  };
+  storedMessages.push(botMessage);
+
+  // Update sessionStorage with the combined messages array
+  sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
 }
 
 function displayMessage(sender, message, timestamp) {
