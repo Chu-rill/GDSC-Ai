@@ -13,3 +13,51 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+/* Add a media query for mobile devices */
+@media screen and (min-width: 400px) and (max-width: 750px) {
+  /* Adjust the container padding */
+  .container {
+    padding: 10px;
+    /* width: (clamp(300px, 400px, 500px) - 10px); */
+    max-width: 450px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 95%;
+  }
+
+  /* Adjust the input width */
+  #text {
+    width: 70%;
+  }
+
+  /* Center the input and button */
+  /* .flex {
+      justify-content: center;
+    } */
+
+  /* Adjust the message container max-height */
+  #messages-container {
+    max-height: calc(100vh - 200px);
+  }
+
+  /* Adjust the font size of the message text */
+  .message-text {
+    font-size: 12px; /* Set text size to extra small */
+  }
+
+  /* Adjust the margin between messages */
+  .message {
+    margin-bottom: 8px;
+  }
+}
+@media (width < 400px) {
+  .container {
+    padding: 8px;
+    width: 300px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 95%;
+  }
+}
