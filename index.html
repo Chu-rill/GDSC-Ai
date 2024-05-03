@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="style.css" />
     <style>
       /* Add a media query for mobile devices */
-      @media screen and (max-width: 600px) {
+      @media (width < 750px) {
         /* Adjust the container padding */
         .container {
-          padding: 16px;
-          width: 500px;
+          padding: 5px;
+          width: (clamp(300px, 450px, 500px) - 10px);
+          margin-left: auto;
+          margin-right: auto;
+          height: 95%;
         }
 
         /* Adjust the input width */
@@ -45,6 +48,16 @@
           margin-bottom: 8px;
         }
       }
+      /* @media (width < 450px) {
+        .container {
+          padding: 8px;
+          width: 300px;
+          max-width: 400px;
+          margin-left: auto;
+          margin-right: auto;
+          height: 95%;
+        }
+      } */
     </style>
   </head>
   <body class="bg-gray-800 h-screen overflow-hidden">

@@ -19,7 +19,7 @@ async function run() {
         parts: [{ text: "Great to meet you. What would you like to know?" }],
       },
     ],
-    generationConfig: { maxOutputTokens: 100 },
+    generationConfig: { maxOutputTokens: 1000 },
   });
 
   const msg = userInput.value;
