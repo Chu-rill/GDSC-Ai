@@ -82,7 +82,8 @@ function displayMessage(sender, message, timestamp) {
     "message",
     sender === "You" ? "user-message" : "bot-message",
     "flex",
-    "mb-4"
+    "mb-4",
+    "text-white"
   );
 
   const senderImage = document.createElement("img");
@@ -100,7 +101,7 @@ function displayMessage(sender, message, timestamp) {
   messageContent.classList.add("message-content");
 
   const messageText = document.createElement("div");
-  messageText.classList.add("message-text");
+  messageText.classList.add("message-text", "text-white");
 
   // Check if the message is a list
   if (Array.isArray(message)) {
