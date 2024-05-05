@@ -42,38 +42,63 @@ async function run() {
 
   displayMessage("You", msg, stamp);
 
-  const result = await chat.sendMessageStream(msg);
+  if (
+    msg.toLowerCase() === "who is your creator" ||
+    msg.toLowerCase() === "who created you"
+  ) {
+    // Respond with the custom name of the creator
+    setTimeout(() => {
+      displayMessage("Conversa", "I was created by Churchill Daniel.", stamp);
+    }, 2000);
+  } else if (
+    msg.toLowerCase() === "what is your name" ||
+    msg.toLowerCase() === "who are you" ||
+    msg.toLowerCase() === "what are you"
+  ) {
+    setTimeout(() => {
+      displayMessage(
+        "Conversa",
+        "My name is Conversa a genral purpose large language model",
+        stamp
+      );
+    }, 2000);
+  } else {
+    const result = await chat.sendMessageStream(msg);
+    const response = await result.response;
+    const text = response.text();
 
-  const response = await result.response;
-  const text = response.text();
+    const history = await chat.getHistory();
+    const msgContent = { role: "user", parts: [{ text: msg }] };
+    const contents = [...history, msgContent];
+    const { totalTokens } = await model.countTokens({ contents });
 
-  const history = await chat.getHistory();
-  const msgContent = { role: "user", parts: [{ text: msg }] };
-  const contents = [...history, msgContent];
-  const { totalTokens } = await model.countTokens({ contents });
+    displayMessage("Conversa", text, stamp);
+    console.log(text);
 
-  displayMessage("Conversa", text, stamp);
-  console.log(text);
+    // // Store the message in sessionStorage
+    // const newMessage = { sender: "You", text: msg, timestamp: stamp.getTime() };
+    // storedMessages.push(newMessage);
+    // sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
 
-  // // Store the message in sessionStorage
-  // const newMessage = { sender: "You", text: msg, timestamp: stamp.getTime() };
-  // storedMessages.push(newMessage);
-  // sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
+    // Store the user message in sessionStorage
+    const userMessage = {
+      sender: "You",
+      text: msg,
+      timestamp: stamp.getTime(),
+    };
+    storedMessages.push(userMessage);
 
-  // Store the user message in sessionStorage
-  const userMessage = { sender: "You", text: msg, timestamp: stamp.getTime() };
-  storedMessages.push(userMessage);
+    // Store the bot message in sessionStorage
+    const botMessage = {
+      sender: "Conversa",
+      text: text,
+      timestamp: stamp.getTime(),
+    };
+    storedMessages.push(botMessage);
 
-  // Store the bot message in sessionStorage
-  const botMessage = {
-    sender: "Conversa",
-    text: text,
-    timestamp: stamp.getTime(),
-  };
-  storedMessages.push(botMessage);
-
-  // Update sessionStorage with the combined messages array
-  sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
+    // Update sessionStorage with the combined messages array
+    sessionStorage.setItem("storedMessages", JSON.stringify(storedMessages));
+  }
 }
 
 function displayMessage(sender, message, timestamp) {
