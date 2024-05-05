@@ -48,15 +48,12 @@ async function run() {
   ) {
     // Respond with the custom name of the creator
     setTimeout(() => {
-      displayMessage(
-        "Conversa",
-        "My creator's name is Churchill Daniel.",
-        stamp
-      );
+      displayMessage("Conversa", "I was created by Churchill Daniel.", stamp);
     }, 2000);
   } else if (
     msg.toLowerCase() === "what is your name" ||
-    msg.toLowerCase() === "who are you"
+    msg.toLowerCase() === "who are you" ||
+    msg.toLowerCase() === "what are you"
   ) {
     setTimeout(() => {
       displayMessage(
