@@ -158,10 +158,13 @@ function displayMessage(sender, message, timestamp) {
   // Get the current minutes
   const currentMinutes = timestamp.getMinutes();
 
+  // Get the current seconds
+  const currentSeconds = timestamp.getSeconds();
+
   // Format the current time (optional)
   const formattedTime = `${currentHour}:${
     currentMinutes < 10 ? "0" : ""
-  }${currentMinutes}`;
+  }${currentMinutes}.${currentSeconds < 10 ? "0" : ""}${currentSeconds}`;
 
   const timestampSpan = document.createElement("span");
   timestampSpan.style.marginLeft = "8px";
