@@ -18,6 +18,9 @@ export default {
     fontFamily: {
       damion: ["Damion", "cursive"],
       inter: ["Inter", "sans-serif"],
+      Poppins: ["Poppins"],
+      Roboto: ["Roboto"],
+      Montserrat: ["Montserrat"],
     },
   },
   plugins: [],
