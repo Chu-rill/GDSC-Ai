@@ -53,6 +53,7 @@ async function run() {
   } else if (
     msg.toLowerCase() === "what is your name" ||
     msg.toLowerCase() === "who are you" ||
+    msg.toLowerCase() === "who are you?" ||
     msg.toLowerCase() === "what are you"
   ) {
     setTimeout(() => {
